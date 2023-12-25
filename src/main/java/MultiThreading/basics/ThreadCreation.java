@@ -5,18 +5,15 @@ public class ThreadCreation {
         Thread thread1= new ExtendThread();
         Thread thread2 =new Thread(new RunnableThread());
 
-        Runnable thread3 = new Runnable() {
+        Runnable thread3 = () -> {
+            try {
+                Thread.sleep(10L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
 
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                for(int i =0;i<10;i++) {
-                    System.out.println("lambda thread "+i);
-                }
+            }
+            for(int i =0;i<10;i++) {
+                System.out.println("lambda thread "+i);
             }
         };
 
